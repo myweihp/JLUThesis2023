@@ -2,23 +2,10 @@
 
 吉林大学学位论文 LaTeX 模板——jluthesis2020。
 
-可生成学硕、专硕、博士简装、博士精装 PDF 论文，可生成单面或双面印刷版本，可生成单页或双页封面。
+可生成学硕、专硕、博士简装、博士精装 PDF 论文，可生成单面或双面印刷版本，可生成单页或双页封面，修改自[JLUThesis2020](https://github.com/maxuewei2/JLUThesis2020)。
+针对原模板的字体等问题做了一些修改。
 
-[Overleaf 模板](https://www.overleaf.com/latex/templates/jlu-thesis-2020/rdnmpjmrtqvc) (因字体版权原因，该模板中使用开源字体，隶书等字体需自己修改模板并上传字体)
-
-
-
-## 示例
-
-示例文档见 [example_files](example_files) 下各文件。
-<details>
-<summary>
-图例
-</summary>
-<img src="https://user-images.githubusercontent.com/13077408/217285061-b9992a89-864e-4d3d-9f57-2b0a68906309.png" width="80%"/>
-</details>
-
-使用示例见 [example.tex](example.tex)。
+目前只是占坑，等待论文撰写完成以及盲审过后更新模板。
 
 ## 使用
 
@@ -83,24 +70,5 @@
 
 此模板为个人实现，未得到学校任何相关人员的认证，使用者应当自行承担一切后果。
 
-## 同类解决方案
 
-- 本科毕业论文：[x86vk/JLU-CCST-Thesis](https://github.com/x86vk/JLU-CCST-Thesis)
-- 硕士毕业论文：[jiafeng5513/JLU_Dissertation](https://github.com/jiafeng5513/JLU_Dissertation)
-
-## 注
-
-- 此模板写于 2020 年 3 月 31 日，主要参考 jluthesis 及自己在写毕业论文时用 LaTeX 实现的 2020 年吉林大学研究生学位论文撰写及装帧规范。<br/>
-  因个人 TeX 能力有限且我自己的实现看起来很乱，所以参考 jluthesis 进行模板化修改产生此模板。<br/>
-  感谢实现 jluthesis 并开源的前辈 Zhang Yinhe。<br/>
-  jluthesis 原档存储于 google code，但已无法下载。<br/>
-  此模板参考的 jluthesis 下载自 [dartall](https://github.com/dartall/jluthesis) 。<br/>
-- 生成双页封面的部分参考 [pkuthss](https://gitea.com/CasperVector/pkuthss/src/branch/master/doc/example/spine.tex)。
-- 参考文献样式使用 [gbt7714-bibtex-style](https://github.com/CTeX-org/gbt7714-bibtex-style)。
-- 2020.4.3 得到学院查重结果，两个查重平台重复率都在 1.X%，且主要集中在原创声明和授权声明的部分。其他人基本不会出现这种情况，大概是查重系统会自动识别论文格式，并忽略了摘要之前的内容，不知道为什么我的没有识别出来。对这一点不放心的或许可以使用工具将 LaTeX 生成的 PDF 与 Word 生成的 PDF 的一些页面组合，或者将原创声明、授权声明、致谢等改为不可选中不可复制 ( `makeCrosscheckVersion.sh` 脚本即为实现这一功能)。
-
-
-## 联系方式
-
-maxuewei1995 at 126 dot com
 

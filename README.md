@@ -1,4 +1,4 @@
-# JLUThesis2020
+# JLUThesis2023
 
 个人自用吉林大学学位论文 LaTeX 模板——jluthesis2023。
 

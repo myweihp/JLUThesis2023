@@ -38,9 +38,12 @@
 	```
 
 - 单面印刷需设置 documentclass 为 oneside (如`\documentclass[twoside,a4paper,12pt]{book}`)，双面印刷需设置 documentclass 为 twoside (如`\documentclass[oneside,a4paper,12pt]{book}`)。
-- 建议安装 TeX Live 并使用 XeLaTeX 编译。<br/>
-  校内可在[吉大镜像站](http://mirrors.jlu.edu.cn/CTAN/systems/texlive/tlnet/install-tl.zip)下载 TeX Live。
-- 若缺少字体需自行安装 (见[fonts.txt](fonts.txt))。所需字体如下：
+- 可选择安装 TeX Live 并使用 XeLaTeX 进行编译，注意设置编译链，如需使用VsCode可以搭配[这篇文章](https://zhuanlan.zhihu.com/p/38178015)食用。<br/>
+校内可在[吉大镜像站](http://mirrors.jlu.edu.cn/CTAN/systems/texlive/tlnet/install-tl.zip)下载 TeX Live。
+- 与原作者的方案不同，我选择在项目下放置字体文件，并指定所需要的字体路径，以实现不同系统下的迁移，当然也可以一同上传至Overleaf。
+<!-- - 我选择的字体方案与学校指定的字体一致。所需字体为：
+	- Simsun（中易宋体，即微软宋体），SimHei（中易黑体，即微软黑体） -->
+<!-- - 若缺少字体需自行安装 (见[fonts.txt](fonts.txt))。所需字体如下：
 	- Adobe Song Std，Adobe Heiti Std，Adobe Kaiti Std，Adobe Fangsong Std
 	- Nimbus Roman，Nimbus Sans，Nimbus Mono
 	- Source Han Sans(思源黑体)，Source Han Serif(思源宋体)
@@ -48,7 +51,7 @@
 
 	安装字体后，可运行 `fc-cache` 刷新字体缓存，可通过 ` fc-list : family | sort ` 查看已安装字体。<br/>
     这两个命令均随 TeX Live 安装，Windows 下在如 `C:\texlive\2020\bin\win32` 的文件夹下可找到，可将该文件夹添加进 PATH 环境变量。<br/> 
-    若编译时提示找不到字体，先检查字体是否已安装，再检查字体名称是否一致。
+    若编译时提示找不到字体，先检查字体是否已安装，再检查字体名称是否一致。 -->
 - 若要使用此模板生成的 PDF 文档查重，需确保 PDF 能够正常复制出汉字。
 
 - 要生成 MS Word 文档，可使用 pandoc 或 Adobe Acrobat DC，也可直接用 MS Word 打开 PDF 得到 Word 文档，只是这三种方式得到的 Word 文档质量不同。

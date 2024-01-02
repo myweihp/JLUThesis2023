@@ -1,0 +1,13 @@
+\begin{table}[htbp]
+\centering
+\caption{模型训练设置}  
+\label{tab:same-adain}
+\begin{tabular}{@{}llll@{}}
+\toprule
+模型       & 编码器参数 & 解码器参数                                      & 损失函数                           \\ \midrule
+模型A & 预训练   & \multicolumn{1}{c}{\multirow{4}{*}{随机初始化}} & \multirow{2}{*}{交叉熵损失} \\
+模型B & 随机初始化 & \multicolumn{1}{c}{}                       &                                \\
+模型C    & 预训练   &                 & \multirow{2}{*}{对比损失} \\
+模型D    & 随机初始化 &                                            &                                \\ \bottomrule
+\end{tabular}
+\end{table}

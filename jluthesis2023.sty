@@ -1,7 +1,9 @@
 % Template Package for Writing Thesis for Jilin University by Ma Xuewei.
-% GitHub: https://github.com/maxuewei2/JLUThesisLaTeX
+% GitHub: https://github.com/myweihp/JLUThesis2023
 % 吉林大学硕博论文 TeX 模板
-%
+% 此模板解决了少部分的公式以及字体问题。
+
+% 修改自https://github.com/maxuewei2/JLUThesis2020，感谢maxuewei前辈和Zhang Yinhe前辈的工作。
 % 此模板写于 2020 年 3 月 31 日，主要参考 jluthesis 
 % 及自己在写毕业论文时用 LaTeX 实现的 2020 年吉林大学研究生学位论文撰写及装帧规范。
 % 因个人 TeX 能力有限且我自己的实现看起来很乱，所以参考 jluthesis 进行模板化修改产生此模板。
@@ -29,8 +31,8 @@
 % 双面印刷需在documentclass选项中声明twoside
 % 单面印刷需在documentclass选项中声明oneside
 % 选项使用举例如下
-% \usepackage[ebook,nobox,amd]{jluthesis2020}%
-% \usepackage[hardcopy,phdplain,twoSideCover,onlyCover]{jluthesis2020}%
+% \usepackage[ebook,nobox,amd]{jluthesis2023}%
+% \usepackage[hardcopy,phdplain,twoSideCover,onlyCover]{jluthesis2023}%
 %
 % N.B.
 % @: 所有的居中行都需要使用\noindent来消除首行缩进，
@@ -39,9 +41,9 @@
 % @: 
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{jluthesis2020}[2020/04/03 v0.3 thesis template for jlu]
+\ProvidesPackage{jluthesis2023}[2023/05/30 v0.4 thesis template for jlu]
 
-\newcommand{\jluthesisVersion}{jluthesis2020 v0.3}
+\newcommand{\jluthesisVersion}{jluthesis2023 v0.4}
 
 
 
@@ -85,7 +87,7 @@
 \@jlu@manualPrintSpinefalse
 \DeclareOption{manualSpine}{\@jlu@manualPrintSpinetrue}
 
-\DeclareOption*{\PackageError{jluthesis2020}{Unknown option ‘\CurrentOption’}{
+\DeclareOption*{\PackageError{jluthesis2023}{Unknown option ‘\CurrentOption’}{
     Options allowed: 
         debug ebook hardcopy  amd pmd phdplain phdfancy nobox manualSpine onlyCover twoSideCover
 }}
@@ -363,10 +365,14 @@
 
 % 子图
 \RequirePackage{subfigure}
+\renewcommand{\thesubfigure}{（\arabic{subfigure}）}
 %\RequirePackage[subfigure]{tocloft}
 %\renewcommand\cftloftitlefont{\sffamily\mdseries}
 %\renewcommand\cftlottitlefont{\sffamily\mdseries}
 
+% \RequirePackage{tocloft}
+% \renewcommand{\cftfiguredotsep}{\cftnodots$\codt$} % 修改图目录的间隔符
+% \renewcommand{\cfttabledotsep}{\cftnodots\textemdash}
 
 
 \RequirePackage[style=pdf,useregional=numeric]{datetime2}
@@ -427,30 +433,54 @@
 \XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
 
 
-\setCJKmainfont[BoldFont=Source Han Serif SC Heavy]{Adobe Song Std}   % 中文缺省字体
-\setCJKsansfont[BoldFont=Source Han Sans SC Heavy]{Source Han Sans SC} % 中文无衬线字体Adobe Heiti Std
-\setCJKmonofont{Adobe Kaiti Std}    % 中文数学字体
+%\setCJKmainfont[BoldFont=Source Han Serif CN Heavy]{Adobe Song Std}   % 中文缺省字体
+%\setCJKsansfont[BoldFont=Source Han Sans CN Heavy]{Source Han Sans CN} % 中文无衬线字体Adobe Heiti Std
+%\setCJKmonofont{Adobe Kaiti Std}    % 中文数学字体
 
 % \setmainfont{TeX Gyre Pagella}    % 英文缺省字体：替代 Times New Roman
 % \setsansfont{TeX Gyre Heros}      % 英文无衬线字体: 替代 Arial
 % \setmonofont{Courier Std}         % 等宽字体：Adobe Courier Std
-\setmainfont{Nimbus Roman No9 L}      % 英文缺省字体：替代 Times New Roman
-\setsansfont{Nimbus Sans L}       % 英文无衬线字体: 替代 Arial
-\setmonofont{Nimbus Mono}       % 等宽字体：Nimbus Mono
+%\setmainfont{Nimbus Roman}      % 英文缺省字体：替代 Times New Roman
+%\setsansfont{Nimbus Sans}       % 英文无衬线字体: 替代 Arial
+%\setmonofont{Nimbus Mono}       % 等宽字体：Nimbus Mono
 
 % we also define \song \kai for our habit
-\setCJKfamilyfont{song}{Adobe Song Std} 
+%\setCJKfamilyfont{song}{Adobe Song Std} 
+
+%\setCJKfamilyfont{kaiti}{Adobe Kaiti Std} 
+
+% define \li (隶书) \hei (黑体) \fs (仿宋)
+%\setCJKfamilyfont{lishu}{LiSu}
+%\setCJKfamilyfont{heiti}{Source Han Sans CN} % Adobe Heiti Std
+%\setCJKfamilyfont{fs}{Adobe Fangsong Std} 
+
+
+
+% \newcommand*{\song}{\CJKfamily{song}}
+% \newcommand*{\kai}{\CJKfamily{kaiti}}
+% \newcommand*{\li}{\CJKfamily{lishu}}
+% \newcommand*{\hei}{\CJKfamily{heiti}}
+% \newcommand*{\fs}{\CJKfamily{fs}}
+
+\setCJKmainfont[Path=fonts/, AutoFakeBold=3.17]{SimSun.ttf}   % 中文缺省字体: 微软宋体
+\setCJKsansfont[Path=fonts/]{SimHei.ttf}  % 中文无衬线字体：原模板是楷体，修正为微软黑体
+\setCJKmonofont[Path=fonts/, AutoFakeBold=3.17]{SimSun.ttf}   % 中文数学字体：微软宋体
+\setmainfont[Path=fonts/, BoldFont=TimesNewRomanBold.ttf]{TimesNewRoman.ttf}    % 英文缺省字体：Times New Roman，同时指定粗体
+\setsansfont[Path=fonts/, BoldFont=ArialBold.ttf]{Arial.ttf}      % 英文无衬线字体: Arial，同时指定粗体
+\setmonofont[Path=fonts/, BoldFont=CourierNewBold.ttf]{CourierNew.ttf}         % 等宽字体：CourierNew，同时指定粗体
+
+% we also define \song \kai for our habit
+\setCJKfamilyfont{song}[Path=fonts/]{SimSun.ttf} 
 \newcommand*{\song}{\CJKfamily{song}}
-\setCJKfamilyfont{kaiti}{Adobe Kaiti Std} 
+\setCJKfamilyfont{kaiti}[Path=fonts/]{KaiTi.ttf} 
 \newcommand*{\kai}{\CJKfamily{kaiti}}
 % define \li (隶书) \hei (黑体) \fs (仿宋)
-\setCJKfamilyfont{lishu}{LiSu}
+\setCJKfamilyfont{lishu}[Path=fonts/]{LiSu.ttf}
 \newcommand*{\li}{\CJKfamily{lishu}}
-\setCJKfamilyfont{heiti}{Source Han Sans SC} % Adobe Heiti Std
+\setCJKfamilyfont{heiti}[Path=fonts/, AutoFakeBold=3]{SimHei.ttf} 
 \newcommand*{\hei}{\CJKfamily{heiti}}
-\setCJKfamilyfont{fs}{Adobe Fangsong Std} 
+\setCJKfamilyfont{fs}[Path=fonts/, AutoFakeBold=3]{FangSong.ttf} 
 \newcommand*{\fs}{\CJKfamily{fs}}
-
 
 % 中文字体声明 (cf. ctex.sty), 
 % ??：现在的设定缩进的方法很笨，等以后再想法改进
@@ -658,8 +688,6 @@
 %\RequirePackage{afterpage}
 %\RequirePackage{relsize}
 
-\RequirePackage[titletoc]{appendix}
-
 
 \renewcommand\contentsname{目\qquad 录}
 \renewcommand\listfigurename{插\quad 图\quad 目\quad 录}
@@ -768,14 +796,42 @@
 % \dottedcontents{<section>}[<left>]{<above>}{<label width>}{<leader width>}
 % indent＝<left> - <label width>
 % <lable width> and space bewteen entries (\vspace) need fine tuning.
-\dottedcontents{chapter}[0pt+4.8em]
-    {\vspace{0.3em}\sihao\noindent}{4.0em}{5pt}
-\dottedcontents{section}[18pt+2.0em]
-    {\vspace{0.3em}\sihao\noindent}{2.0em}{5pt}
-\dottedcontents{subsection}[36pt+2.7em]
-    {\vspace{0.3em}\sihao\noindent}{2.7em}{5pt}
-\dottedcontents{subsubsection}[54pt+3.4em]
-    {\vspace{0.3em}\sihao\noindent}{3.4em}{5pt}
+
+% \dottedcontents{chapter}[0pt+4.8em]    {\vspace{0.3em}\sihao\noindent}{4.0em}{5pt}
+% \dottedcontents{section}[18pt+2.0em]{\vspace{0.3em}\sihao\noindent}{2.0em}{5pt}
+% \dottedcontents{subsection}[36pt+2.7em]
+%     {\vspace{0.3em}\sihao\noindent}{2.7em}{5pt}
+% \dottedcontents{subsubsection}[54pt+3.4em]
+%     {\vspace{0.3em}\sihao\noindent}{3.4em}{5pt}
+
+% \titlecontents{section}[left]{above-code}
+% {numbered-entry-format}{numberless-entry-format}
+% {filler-page-format}[below-code]
+
+\titlecontents{chapter}[0pt]{\vspace{0.3em}\sihao\noindent}
+  {\thecontentslabel\hspace{0.8em} }
+  {\vspace{0.3em}\sihao\noindent}
+  {\titlerule*[0.5pc]{$\cdot$}\contentspage}{}
+\titlecontents{section}[14.05pt]{\vspace{0.3em}\sihao\noindent}
+  {\thecontentslabel\hspace{0.5em} }
+  {\vspace{0.3em}\sihao\noindent}
+  {\titlerule*[0.5pc]{$\cdot$}\contentspage}{}
+\titlecontents{subsection}[30.5pt]{\vspace{0.3em}\sihao\noindent}
+  {\thecontentslabel\hspace{0.5em} }
+  {\vspace{0.3em}\sihao\noindent}
+  {\titlerule*[0.5pc]{$\cdot$}\contentspage}{}
+\titlecontents{subsubsection}[47pt]{\vspace{0.3em}\sihao\noindent}
+  {\thecontentslabel\hspace{0.425em} }
+  {\vspace{0.3em}\sihao\noindent}
+  {\titlerule*[0.5pc]{$\cdot$}\contentspage}{}
+\titlecontents{figure}[0pt]{\vspace{0.3em}\sihao\noindent}
+  {\thecontentslabel\hspace{0.8em} }
+  {\vspace{0.3em}\sihao\noindent}
+  {\titlerule*[0.5pc]{$\cdot$}\contentspage}{}
+\titlecontents{table}[0pt]{\vspace{0.3em}\sihao\noindent}
+  {\thecontentslabel\hspace{0.8em} }
+  {\vspace{0.3em}\sihao\noindent}
+  {\titlerule*[0.5pc]{$\cdot$}\contentspage}{}
 
 
 
@@ -790,26 +846,68 @@
 
 
 % modify \autoref to use Chinese name mark to refer to
-\renewcommand{\figureautorefname}{\figurename}
-\renewcommand{\tableautorefname}{\tablename}
-\renewcommand{\equationautorefname}{\equationname}
-\newcommand{\algorithmautorefname}{算法}
+% \renewcommand{\figureautorefname}{\figurename}
+% \renewcommand{\tableautorefname}{\tablename}
+% \renewcommand{\equationautorefname}{\equationname}
+% \newcommand{\algorithmautorefname}{算法}
+% \RequirePackage{prettyref}
+% \newrefformat{mychap}{\textcolor{blue}{第}\;\ref{#1}\;\textcolor{blue}{章}}
+% \newrefformat{mysec}{\textcolor{blue}{第}\;\ref{#1}\;\textcolor{blue}{节}}
+% \newrefformat{mysubsec}{\textcolor{blue}{第}\;\ref{#1}\;\textcolor{blue}{小节}}
 
+\RequirePackage[nameinlink]{cleveref}
+% 不再使用autoref，而是cleveref，配合下面预定义的格式来引用。
+
+\crefformat{figure}{#2图#1#3~}
+\crefformat{table}{#2表#1#3~}
+\crefformat{equation}{#2公式#1#3~}
+\crefformat{algorithm}{#2算法#1#3~}
+
+\crefformat{theorem}{#2定理#1#3~}
+\crefformat{lemma}{#2引理#1#3~}
+\crefformat{corollary}{#2推论#1#3~}
+\crefformat{proposition}{#2命题#1#3~}
+\crefformat{definition}{#2定义#1#3~}
+\crefformat{example}{#2例#1#3~}
+\crefformat{listing}{#2列表#1#3~}
+
+\crefformat{appendix}{#2附录#1#3~}
+\crefformat{page}{#2页#1#3~}
+\crefformat{line}{#2行#1#3~}
+
+\crefformat{chapter}{#2第#1章#3}
+\crefformat{section}{#2第#1节#3}
+\crefformat{subsection}{#2第#1小节#3}
+
+\crefrangeformat{chapter}{#3第#1章#4至#5第#2章#6}
+\crefrangeformat{section}{#3第#1节#4至#5第#2节#6}
+\crefrangeformat{subsection}{#3第#1小节#4至#5第#2小节#6}
+
+\crefmultiformat{chapter}{#2第#1章#3}{和#2第#1章#3}{，#2第#1章#3}{和#2第#1章#3}
+\crefmultiformat{section}{#2第#1节#3}{和#2第#1节#3}{，#2第#1节#3}{和#2第#1节#3}
+\crefmultiformat{subsection}{#2第#1小节#3}{和#2第#1小节#3}{，#2第#1小节#3}{和#2第#1小节#3}
+
+\newcommand{\crefpairconjunction}{~和~}
+\newcommand{\crefmiddleconjunction}{, }
+\newcommand{\creflastconjunction}{~和~}
+\newcommand{\crefpairgroupconjunction}{~和~}
+\newcommand{\crefmiddlegroupconjunction}{, }
+\newcommand{\creflastgroupconjunction}{~和~}
+\newcommand{\crefrangeconjunction}{~至~}
 
 % 定义一个公式环境，使公式和标号之间加一串点
+% 修改了点的形式，与原来不同，更接近word模板的效果。
 \newenvironment{dotsequation}
-    {
-        \begin{equation}
-        \hskip \textwidth minus \textwidth
-    }
-    { 
-        \hskip 0.5em \leaders\hbox{.}\hskip \textwidth minus \textwidth
-        \end{equation}
-    }
-    
-    
+{
+    \begin{equation}
+    \hskip \textwidth minus \textwidth
+}
+{ 
+    \hskip 0.5em \leaders\hbox{$\cdot$}\hskip \textwidth minus \textwidth
+    \end{equation}
+}
 
-\newlinechar=`\^^J
+% \newlinechar=`\^^J
 
 
 % 以下是一些输出书脊的命令，但模板中没用到
@@ -1056,7 +1154,7 @@
         \newlength{\@jlu@widthK}
   
         \xiaosi \bfseries
-        \parbox[t][2.2cm][t]{\textwidth}{
+        \vspace{-25pt}\parbox[t][2.2cm][t]{\textwidth}{
             \settowidth{\@jlu@widthI}{研究生学号}
             \settowidth{\@jlu@widthJ}{单位代码}
             \settowidth{\@jlu@widthK}{10183}
@@ -1073,9 +1171,11 @@
             \makebox[\@jlu@widthK][s]{\@jlu@securityLevel}
         }
     }
+    % \vspace{25pt}
     \if@jlu@phdfancy
     \else
         \begin{center}
+            % 如果是盲审，则logo.png需要改成nologo.png
             \includegraphics[width=3.2cm]{logo.png}
         \end{center}
     \fi
@@ -1098,7 +1198,7 @@
         \else  
             \vspace{.6cm}
 
-            \sanhao \sffamily \mdseries \@jlu@cTitle \\
+            \sanhao \sffamily \mdseries \@jlu@cTitle \\ 
             \vspace{0.8cm} 
             \xiaosan \sffamily \mdseries \@jlu@eTitle
         \fi
@@ -1152,6 +1252,7 @@
   
     \if@jlu@phdfancy
         \begin{center}
+            % 如果是盲审，则logo.png需要改成nologo.png
             \includegraphics[width=3.2cm]{logo.png}
         \end{center}
     \else
@@ -1232,6 +1333,13 @@
 
     \parbox[t][1cm][t]{\linewidth}{\begin{center}\end{center}}
 
+    % {
+    %      \sanhao \hei \textbf{未经本论文作者的书面授权，依法收存和保管本论文书面版本、电子版本的任何单位和个人，均不得对本论文的全部或部分内容进行任何形式的复制、修改、发行、出租、改编等有碍作者著作权的商业性使用（但纯学术性使用不在此限）。否则，应承担侵权的法律责任。\\}
+    % }
+    %TODO 验证黑体是否生效
+
+
+    
     \begin{center}
         \sanhao
         \noindent 吉林大学{\@jlu@degreeName}学位论文原创性声明
@@ -1240,10 +1348,9 @@
     \message{^^JjluPageNum jluOriginalStatement \therealpage ^^J}
     
     {
+        \vspace{0.5cm}
         \sihao 本人郑重声明：所呈交学位论文，是本人在指导教师的指导下，
-        独立进行研究工作所取得的成果。除文中已经注明引用的内容外，本论文
-        不包含任何其他个人或集体已经发表或撰写过的作品成果。对本文的研究
-        做出重要贡献的个人和集体，均已在文中以明确方式标明。本人完全意识
+        \mbox{独立进行研究工作所取得的成果。}\mbox{除文中已经注明引用的内容外，}本论文不包含任何其他个人或集体已经发表或撰写过的作品成果。对本文的研究做出重要贡献的个人和集体，均已在文中以明确方式标明。本人完全意识
         到本声明的法律结果由本人承担。\\*[0.5cm]
         
         \hspace{5cm}学位论文作者签名：\makebox(0,0)[c]{\@jlu@authorSignatureOne}
@@ -1271,15 +1378,13 @@
     
     \message{^^JjluPageNum jluContributionStatement \therealpage ^^J}
     
-    {
+    {   
+        \vspace{0.5cm} % 待定，去掉的话和word版本明显不一样。
         \sihao
-        本人完全了解吉林大学有关保留、使用学位论文的规定,同意吉
-    林大学保留或向国家有关部门或机构送交论文的复印件和电子版,允
-    许论文被查阅和借阅;本人授权吉林大学可以将本学位论文的全部或
-    部分内容编入有关数据库进行检索,可以采用影印、缩印或其他复制
-    手段保存论文和汇编本学位论文。
-
+        本人完全了解吉林大学有关保留、使用学位论文的规定,同意吉林大学保留或向国家有关部门或机构送交论文的复印件和电子版,允许论文被查阅和借阅;本人授权吉林大学可以将本学位论文的全部或部分内容编入有关数据库进行检索,可以采用影印、缩印或其他复制手段保存论文和汇编本学位论文。
+        
        （保密论文在解密后应遵守此规定）
+
 
         \indent 论文级别：
             \if@jlu@md{$\blacksquare$} 
@@ -1291,20 +1396,19 @@
         
         \indent 学科专业：\@jlu@cSubjectTrd
 
-        \indent 论文题目：\@jlu@cTitle 
-        
+        \indent 论文题目：\@jlu@cTitle \\
+        % 论文题目如果过长，需要在这里手动修改\@jlu@cTitle为论文题目，视情况加mbox
         \indent 作者签名：\makebox(0,0)[c]{\@jlu@authorSignatureTwo}\hphantom{一二三四五六七八}指导教师签名：\makebox(0,0)[c]{\@jlu@supervisorSignature}\\
         
         %\hspace*{7cm} 
         
-        \hphantom{啊啊啊啊啊啊啊啊啊啊啊啊啊啊}\@jlu@ifDateExists{\@jlu@contributionStatementYear}{2}年\@jlu@ifDateExists{\@jlu@contributionStatementMonth}{1}月\@jlu@ifDateExists{\@jlu@contributionStatementDay}{1}日\\
-
+        \hphantom{啊啊啊啊啊啊啊啊啊啊啊啊啊啊}\@jlu@ifDateExists{\@jlu@contributionStatementYear}{2}年\@jlu@ifDateExists{\@jlu@contributionStatementMonth}{1}月\@jlu@ifDateExists{\@jlu@contributionStatementDay}{1}日\\        
         \indent 作者联系地址（邮编）：\@jlu@cAddress \\
 
         \indent 作者联系电话：\mbox{\@jlu@telphone}
     }
 } % end \contributionstatement
-
+% 这个地方我看word模板日期和地址中间是没有空行的，所以我去掉了
 
 
 % 摘要(置于目录前)
@@ -1327,7 +1431,7 @@
 
     {\xiaosi \@jlu@cAbstract}
 
-    \vspace{2.0em}
+    \vspace{1.0em}
 
     {
         \rmfamily\xiaosi\noindent 
@@ -1351,7 +1455,7 @@
   
     {\xiaosi \@jlu@eAbstract}
 
-    \vspace{2.0em}
+    \vspace{1.0em}
 
     {
         \rmfamily\xiaosi\noindent 
@@ -1368,10 +1472,14 @@
     
     \clearpage
     %\phantomsection
-    %\addcontentsline{toc}{chapter}{参考文献}
+    % \addcontentsline{toc}{chapter}{参考文献}
     \message{^^JjluPageNum jluReference \therealpage ^^J}
+    \let\oldaddcontentsline\addcontentsline% Store \addcontentsline
+    \renewcommand{\addcontentsline}[3]{}%
     \bibliographystyle{\@jlu@referenceStyle}
     \bibliography{\@jlu@referenceFile}
+    \let\addcontentsline\oldaddcontentsline
+    \addcontentsline{toc}{chapter}{\hspace{-.22em}参考文献}
 }
 
 
@@ -1380,7 +1488,7 @@
     {
         \chapter*{致 \qquad 谢}
         \phantomsection
-        \addcontentsline{toc}{chapter}{致\qquad 谢}
+        \addcontentsline{toc}{chapter}{\hspace{-.22em}致\qquad 谢}
         \markboth{致 \qquad 谢}{致 \qquad 谢}%
         \message{^^JjluPageNum jluAcknowledgment \therealpage ^^J}
     }
@@ -1388,19 +1496,18 @@
         \message{^^JjluPageNum jluAcknowledgmentLastPage \therealpage ^^J}
     }
 
-
 \newenvironment{jluSelfIntroduction}
     {
         \chapter*{作者简介及在学期间所取得的科研成果}
         \phantomsection
-        \addcontentsline{toc}{chapter}{作者简介及在学期间所取得的科研成果}
+        \addcontentsline{toc}{chapter}{\hspace{-.22em}作者简介及在学期间所取得的科研成果}
         \markboth{作者简介及在学期间所取得的科研成果}{作者简介及在学期间所取得的科研成果}%
         \message{^^JjluPageNum jluSelfIntroduction \therealpage ^^J}
     }
     {}
 
 
-
+% \RequirePackage[titletoc]{appendix}
 
 
 
@@ -1446,7 +1553,7 @@
 
 % 输出双面封皮时需删掉第一页
 %\makeatletter
-%\@ifpackagewith{jluthesis2020}{twosidecover}{\AtBeginDocument{\AtBeginShipoutNext{\AtBeginShipoutDiscard}}}{}
+%\@ifpackagewith{jluthesis2023}{twosidecover}{\AtBeginDocument{\AtBeginShipoutNext{\AtBeginShipoutDiscard}}}{}
 %\makeatother
 
 

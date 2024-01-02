@@ -1,0 +1,212 @@
+\documentclass[oneside,a4paper,12pt,AutoFakeBold]{book}%,AutoFakeBold,twoside,openright,
+% 可用选项有 debug|ebook|hardcopy, amd|pmd|phdplain|phdfancy, nobox, manualSpine, onlyCover, twoSideCover, noBlankPages.
+% debug 生成的PDF带框线，方便调试
+% ebook 带彩色文字的PDF
+% hardcopy 无彩色文字的PDF
+% amd 学硕使用
+% pmd 专硕使用
+% phdplain 博士论文简装
+% phdfancy 博士论文精装
+% nobox 输出的封面无框线和书脊
+% manualSpine 手动输出书脊,需配合\jluManualSpine命令
+% onlyCover 仅输出封面页
+% twoSideCover 输出双页封面
+% noBlankPages 去掉空白页，主要用于上传到图书馆学位论文系统
+% 默认为 hardcopy,amd，且nobox=false，manualSpine=false，onlyCover=false，twoSideCover=false， noBlankPages=false
+% 双面印刷需在documentclass选项中声明twoside
+% 单面印刷需在documentclass选项中声明oneside
+% 选项使用举例如下
+\usepackage[amd]{jluthesis2023}%学硕
+%\usepackage[amd,hardcopy,noBlankPages]{jluthesis2023} %学硕、无彩色文字、去除空白页
+% 用于算法注释
+\usepackage{algcompatible}
+\renewcommand{\COMMENT}[2][.5\linewidth]{%
+  \leavevmode\hfill\makebox[#1][l]{//~#2}}
+\algnewcommand\algorithmicto{\textbf{to}}
+\algnewcommand\RETURN{\State \textbf{return} }
+
+% 用于排版代码
+\usepackage{listings}
+% \setCJKmainfont{Adobe Song Std}
+% \setCJKfamilyfont{song}{Adobe Song Std}
+
+\usepackage{hyperxmp}
+
+%用于假文本生成，调试。
+\usepackage{zhlipsum}
+
+\usepackage{xcolor}
+\newcommand{\TODO}[1]{\textcolor{red}{TODO：#1}}
+% 自定义的一个小命令，可以用来标记需要做的内容
+\usepackage{enumerate}
+
+\graphicspath{{figures/}}
+
+% 如果封面标题刚好换行，用\mbox{}防止换行
+% 如果一定要换行的话，建议把断开的前后用\mbox{}包起来，或者在换行处使用\protect\\
+% \mbox的好处是，在不需要换行的地方会不换行。
+\newcommand{\Title}{\mbox{吉林大学学位论文模板{\jluthesisVersion}示例}}
+\newcommand{\Author}{千颂伊}
+\begin{document}
+\frontmatter
+\sloppy % 解决中英文混排的断行问题，会加入间距，但不会影响断行 
+
+
+\jluCTitle{\Title}
+
+% 竖排的书脊输出时，如果遇到中英混杂的标题会比较麻烦，需要中英分开控制输出
+% 但如果仅有中文或英文都比较简单，如
+% \jluCSpineTitle{吉林大学学位论文模版示例} % 仅中文的书脊标题
+% \jluCSpineTitle{\jluPrintSpine{Sample Typesetting for {\jluthesisVersion}}} % 仅英文的书脊标题
+\jluCSpineTitle{\jluPrintSpine{\jluPrintSpineChinese{吉林大学学位论文模版}{\jluthesisVersion}\jluPrintSpineChinese{示例}}} % 中英混杂的书脊标题
+
+\jluSpineHorizontalPosition{1.65} % 书脊的水平位置，修改可使书脊水平平移
+
+% 当在选项中指定手动输出书脊时,可用下列命令手动输出书脊进行微调
+% \jluManualSpine{
+%   % for oneSideCover
+%	\jluPrintVerticallyOneByOne{2.5cm}{-10em}{吉林大学学位论文模板}{0.2in}{}
+%	\jluPrintVerticallySentence{2.5cm}{-26.5em}{\rotatebox{-90}{\jluthesisVersion}}
+%	\jluPrintVerticallyOneByOne{2.5cm}{-30em}{示例}{0.2in}{}
+%	\jluPrintVerticallyOneByOne{2.45cm}{-38em}{ \Author }{0.2in}{\bfseries}
+%	\jluPrintVerticallyOneByOne{2.5cm}{-47em}{ 吉林大学 }{0.2in}{\kai}
+%   % for twoSideCover    
+%	\jluPrintVerticallyOneByOne{23cm}{-10em}{吉林大学学位论文模板}{0.2in}{}
+%	\jluPrintVerticallySentence{23cm}{-26.5em}{\rotatebox{-90}{\jluthesisVersion}}
+%	\jluPrintVerticallyOneByOne{23cm}{-30em}{示例}{0.2in}{}
+%	\jluPrintVerticallyOneByOne{23cm}{-38em}{ \Author }{0.2in}{\bfseries}
+%	\jluPrintVerticallyOneByOne{23cm}{-47em}{ 吉林大学 }{0.2in}{\kai}
+% } % jluManualSpine
+
+\jluETitle{Sample Typesetting for {\jluthesisVersion}}
+\jluCSubject{计算机科学与技术}   % 封面的『专业』或『类别』
+\jluCInterest{计算机视觉}  % 封面的『研究方向』或『领域（方向）』，博士精装版扉页的『研究方向』
+\jluCSubjectScd{计算机科学与技术}  % 扉页的『专业名称』或『领域（方向）』
+\jluCSubjectTrd{计算机科学与技术}  % 学位论文授权说明中的『学科专业』
+\jluCDegree{工学硕士}  % 扉页的『学位类别』或『类别』
+\jluCCollege{人工智能学院}
+\jluCollegeNumber{10183}
+\jluCUniversity{吉林大学}
+\jluCAuthor{\Author} % 若为两个字建议中间留一个汉字的空间，如王\hphantom{空}喆
+\jluCSupervisor{都敏俊} % 若为两个字建议中间留一个汉字的空间，如王\hphantom{空}喆
+\jluCSupervisorPost{教授}
+\jluClassification{TP389.1}
+\jluSecurityLevel{公开}
+\jluCAddress{吉林大学人工智能学院，130012} 
+\jluTelphone{(+86) 1764987XXXX}  
+\jluStudentNumber{202056XXXX}
+
+% 以下签名，如需使用手动签名，可将文件名换成nologo.png
+\jluAuthorSignatureOne{ % 原创声明作者签名
+	\raisebox{0.5cm}{
+		\hspace{3.5cm}
+		\includegraphics[width=3cm]{qian-song-yi.png}
+	}
+}
+\jluAuthorSignatureTwo{ % 授权声明作者签名
+	\raisebox{0.5cm}{
+		\hspace{3.5cm}
+		\includegraphics[width=3cm]{qian-song-yi.png}	
+	}
+}
+\jluSupervisorSignature{ % 授权声明导师签名
+	\raisebox{0.5cm}{
+		\hspace{3.5cm}
+		\includegraphics[width=3cm]{du-min-jun.png}
+	}
+}
+
+% 以下日期若注释掉，对应的日期将留空
+\jluDateForCover{2023}{5}
+% \jluDegreeObtainDate{2023}{6}{21}
+\jluDefenseDate{2023}{5}{25}
+\jluOriginalStatementDate{2023}{5}{25}
+\jluContributionStatementDate{2023}{5}{25}
+
+\jluCommitteeTable{
+	%\vspace{5cm}
+	\setstretch{1.32}
+    \begin{tabular}{lllr}
+    \multicolumn{4}{l}{答辩委员会组成：}\\
+            & 姓名        & 职称    & 工作单位     \\
+        主席 & 徐宜花      & 教授    & 某某大学     \\
+        委员 & 李辉京      & 教授    & 某某大学     \\
+            & 刘世美      & 教授    & 某某某某大学  \\
+            & 千允才      & 教授    & 某某某某某大学 \\
+            & 张英牧      & 教授    & 某某某大学    \\
+            & 尹\quad 凡 & 研究员   & 某某大学     \\
+    \end{tabular}
+}
+
+\input{chapters/abstract.tex}
+
+\hypersetup{
+	pdfcreator={XeLaTeX \& \jluthesisVersion},   % creator of the document
+	pdfproducer={XeLaTeX \& \jluthesisVersion},  % producer of the document
+	pdfinfo={
+          CreationDate={2023 0530 120000},
+          ModDate={2023 0530 120000},
+    },
+}
+\jluMakeCover
+
+\titleformat{\chapter}{\centering\sffamily\mdseries\sanhao}{\CJKchaptername}{1em}{}
+\titlespacing{\chapter}{0pt}{8pt}{16pt}
+
+\pagenumbering{Roman} 
+\tableofcontents
+
+% \RequirePackage{tocloft}
+
+% \renewcommand{\cftfiguredotsep}{\cftnodots\codt\codt} % 修改图目录的间隔符
+% \renewcommand{\cfttabledotsep}{\cftnodots\textemdash}
+
+
+%修改插图和表格目录中，不同章节之间出现的间隔。解决方案来自https://tex.stackexchange.com/questions/121879/remove-spacing-between-per-chapter-figures-in-lof
+\let\origaddvspace\addvspace
+\renewcommand{\addvspace}[1]{}
+%插图目录
+\cleardoublepage
+\pdfbookmark{插图目录}{lof}
+\label{lof}
+\listoffigures
+
+%表格目录
+\clearpage
+\pdfbookmark{表格目录}{lot}
+\label{lot}
+\listoftables
+\renewcommand{\addvspace}[1]{\origaddvspace{#1}}
+
+\titleformat{\chapter}{\centering\rmfamily\bfseries\sanhao}{\CJKchaptername}{1em}{}
+\titlespacing{\chapter}{0pt}{8pt}{16pt}
+
+\clearpage
+\pagenumbering{arabic}
+
+{\xiaosi}
+%{\fontsize \fontsize{12.05pt}{14.45pt}\selectfont}
+% 清除目录后面空页的页眉和页脚
+\clearpage{\pagestyle{empty}\cleardoublepage}
+
+%%% 正文
+\mainmatter
+\xiaosi                        % 正文使用默认字体，小四，宋体
+
+
+\input{chapters/chapter1_introduction}
+\input{chapters/chapter2_figure}
+\input{chapters/chapter3_equation}
+\input{chapters/chapter4_table}
+
+\input{chapters/example.tex}
+
+\jluReferenceFile{main}
+\jluReferenceStyle{gbt7714-numerical} % gbt7714-author-year
+\jluPrintReference
+
+\input{chapters/selfintroduction.tex}
+
+\input{chapters/acknowledgement.tex}
+
+\end{document}

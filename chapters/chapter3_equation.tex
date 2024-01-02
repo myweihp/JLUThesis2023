@@ -1,0 +1,20 @@
+\chapter{公式的使用}
+\label{chap:equation}
+
+\section{带点的行间公式}
+
+在学校给出的模板中，公式后面是有一排点的，原作者给的dotsequation环境的点似是靠下的，修改后是上下局中的，与模板一致。这里给出了多行公示使用同一个编号的例子，注意换行：
+
+\begin{dotsequation}
+    \label{eq:spe}
+    \begin{aligned}
+            \mathrm{SPE}(pos, 2\times idx) &=\mathrm{sin}(\frac{pos}{10000^{2\times idx/C}} ),\\
+    \mathrm{SPE}(pos, 2\times idx +1) &= \mathrm{cos}(\frac{pos}{10000^{2\times idx/C}} ),
+    \end{aligned}
+\end{dotsequation}%
+
+\section{行内公式}
+行内公示非常简单，用\$...\$包裹即可。
+样例：
+
+其中$\ell=1...L$，$L$为Transformer层的数量。

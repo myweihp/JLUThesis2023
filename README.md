@@ -5,8 +5,6 @@
 可生成学硕、专硕、博士简装、博士精装 PDF 论文，可生成单面或双面印刷版本，可生成单页或双页封面，修改自[JLUThesis2020](https://github.com/maxuewei2/JLUThesis2020)。
 针对原模板的字体等问题做了一些修改，但我本人只用于撰写学硕毕业论文，因此可能会对**博士**、**专硕**的修改不生效，欢迎提issue交流。
 
-目前只是占坑，等待论文撰写完成以及盲审过后更新模板。
-
 ## 使用
 
 - 选项
@@ -50,15 +48,7 @@
 	- Arial及ArialBold
 	- CourierNew及CourierNewBold
 	- TimesNewRoman及TimesNewRomanBold
-<!-- - 若缺少字体需自行安装 (见[fonts.txt](fonts.txt))。所需字体如下：
-	- Adobe Song Std，Adobe Heiti Std，Adobe Kaiti Std，Adobe Fangsong Std
-	- Nimbus Roman，Nimbus Sans，Nimbus Mono
-	- Source Han Sans(思源黑体)，Source Han Serif(思源宋体)
-	- LiSu (隶书)
 
-	安装字体后，可运行 `fc-cache` 刷新字体缓存，可通过 ` fc-list : family | sort ` 查看已安装字体。<br/>
-    这两个命令均随 TeX Live 安装，Windows 下在如 `C:\texlive\2020\bin\win32` 的文件夹下可找到，可将该文件夹添加进 PATH 环境变量。<br/> 
-    若编译时提示找不到字体，先检查字体是否已安装，再检查字体名称是否一致。 -->
 - 若要使用此模板生成的 PDF 文档查重，需确保 PDF 能够正常复制出汉字。
 
 - 要生成 MS Word 文档，可使用 pandoc 或 Adobe Acrobat DC，也可直接用 MS Word 打开 PDF 得到 Word 文档，只是这三种方式得到的 Word 文档质量不同。
@@ -79,6 +69,3 @@
 ## 免责声明
 
 此模板为个人实现，未得到学校任何相关人员的认证，使用者应当自行承担一切后果。
-
-
-
